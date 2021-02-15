@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Бронирование</h1>
+
+
+{% for category in categorys%}
+<div class="card ">
+  <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="{{ MEDIA_URL }}{{category.photo.url}}">
+  </div>
+  <div class="card-content ">
+    <span class="card-title activator grey-text text-darken-4">{{category.name_of_category}}<i class="material-icons right">more_vert</i></span>
+    <p>{{category.additional_Info}}</p>
+  </div>
+  <div class="card-reveal ">
+    <span class="card-title grey-text text-darken-4">Бронирование<i class="material-icons right">close</i></span>
+    <form method="POST">
+      <input name="category" type="hidden" value="{{category.id}}"/>
+      {% csrf_token %}
+      {{category.reservation}}
+    
+    <input type="submit" value="Send" >
+    <p></p>
+    <!--{% for reserv in reservations%}
+    <p>Комната {{reserv.room_number}} забронированна до {{reserv.check_out_date}}</p>
+    {% endfor %}
+    -->
+  </form>
+  </div>
+</div>
+          
+{% endfor %}
+
+
+
+<script> 
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+
+  $(document).ready(function(){
+    $('.timepicker').timepicker();
+  });
+</script> 
+
+{% endblock %}

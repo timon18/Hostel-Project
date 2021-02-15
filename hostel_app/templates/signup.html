@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Регистрация</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Авторизация</a></li>
+      </ul>
+    </div>
+  </nav>
+<body>
+
+    {% block content %}
+    <h2>Регистрация</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mb-2 ">Отправить</button>
+    </form>
+    {% endblock %}
